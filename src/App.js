@@ -1,15 +1,31 @@
+import react, {useState} from 'react';
 import './App.css';
 import Header from './Header.js';
 import Listagem from './Listagem';
+import UserLogin from './UserLogin';
+import {ClienteContext} from "./ClienteContext"
+import { BrowserRouter as Router, Switch, Route} from "react-router-dom";
+
+
+
 
 function App() {
+  const [dados, setDados]= useState({})
+
   return (
-  <>
-
-  <Header />
-  <Listagem />
-
-  </>
+  <ClienteContext.Provider value={{dados, setDados}}>
+  <Router>
+    <Header />
+      <Switch>
+          <Route path="/" exact>
+            <Listagem />
+            </Route>
+          <Route path="/login">
+            <UserLogin/>
+          </Route>
+        </Switch>
+  </Router>
+  </ClienteContext.Provider>
   );
 }
 
