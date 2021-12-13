@@ -1,10 +1,15 @@
-import React from "react";
+import React, {useContext} from "react";
+import { Link } from "react-router-dom";
+import { ClienteContext } from "./ClienteContext";
 import "./Header.css"
 
 const Header = () => {
+
+  const cliente = useContext(ClienteContext)
+
     return(
         <nav className="navbar navbar-expand-sm bg-primary ">
-        <span className="navbar-brand">
+        <Link  className="navbar-brand" to="/">
           <img
             src="logo192.png"
             alt="Exchange Cripto Facil"
@@ -13,13 +18,14 @@ const Header = () => {
           />
           <h3>Exchange Cripto Facil</h3>
           <h5>Moedas em Destaque</h5>
-        </span>
+        </Link>
   
         <ul className="navbar-nav ml-auto">
           <li className="nav-item">
-            <span className="nav-link">
+            <Link className="nav-link" to="/login">
               <i className="fas fa-user-friends mr-2"></i>
-            </span>
+              { cliente.dados.nome ? cliente.dados.nome + "Sair" :"Login"}
+            </Link>
           </li>
         </ul>
       </nav>
